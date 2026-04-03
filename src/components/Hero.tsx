@@ -25,8 +25,8 @@ export default function Hero() {
           </div>
 
           {/* Photo */}
-          <div className="relative order-1 md:order-2">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="relative order-1 md:order-2 max-w-[280px] md:max-w-xs mx-auto w-full">
+            <div className="relative aspect-[9/16] rounded-3xl overflow-hidden shadow-2xl">
               <Image
                 src={sophrologuePhoto}
                 alt="Christine Vallet, Sophrologue"

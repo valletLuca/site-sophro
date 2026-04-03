@@ -4,6 +4,7 @@ import About from '@/components/About';
 import Services from '@/components/Services';
 import SessionSteps from '@/components/SessionSteps';
 import Quote from '@/components/Quote';
+import Cabinet from '@/components/Cabinet';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
@@ -20,6 +21,7 @@ export default function Home() {
         <Services />
         <SessionSteps />
         <Quote />
+        <Cabinet />
         <Testimonials />
         <Pricing />
         <FAQ />

@@ -1,6 +1,9 @@
+import ReserveLink from './rdv/ReserveLink';
+
 const pricingPlans = [
   {
     title: 'Séance individuelle',
+    sessionType: 'individuelle',
     price: '60',
     duration: '1h',
     description: 'Accompagnement personnalisé adapté à vos besoins.',
@@ -14,8 +17,9 @@ const pricingPlans = [
   },
   {
     title: 'Séance enfant/ado',
+    sessionType: 'enfant_ado',
     price: '50',
-    duration: '1h',
+    duration: '45mn',
     description: 'Séance adaptée pour les plus jeunes. Pour les enfants de 10 à 17 ans.',
     features: [
       'Approche ludique',
@@ -26,7 +30,8 @@ const pricingPlans = [
     highlighted: false
   },
   {
-    title: 'Séance en groupe',
+    title: 'Séance en groupe en structure',
+    sessionType: 'groupe_structure',
     price: '',
     information: 'Prix et durée à définir ensemble',
     description: 'Interventions en collectif adaptées à votre structure.',
@@ -38,6 +43,21 @@ const pricingPlans = [
       'Entreprises et associations'
     ],
     highlighted: true
+  }
+  ,
+  {
+    title: 'Séance en groupe au cabinet',
+    sessionType: 'groupe_cabinet',
+    price: '20',
+    duration: 'pers pour 1h30',
+    information: 'Entre 3 et 6 personnes',
+    description: 'Interventions au cabinet pour votre groupe',
+    features: [
+      'Avec des amis',
+      'Avec de la famille',
+      'Avec des proches',
+    ],
+    highlighted: false 
   }
 ];
 
@@ -56,7 +76,7 @@ export default function Pricing() {
         </p>
 
         {/* Individual Pricing */}
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {pricingPlans.map((plan, index) => (
             <div 
               key={index} 
@@ -88,12 +108,12 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <a 
-                href="#contact" 
+              <ReserveLink
+                sessionType={plan.sessionType}
                 className={`block text-center mt-auto ${plan.highlighted ? 'btn-primary' : 'btn-secondary'}`}
               >
                 Réserver
-              </a>
+              </ReserveLink>
             </div>
           ))}
         </div>
@@ -124,7 +144,7 @@ export default function Pricing() {
 
         {/* Note */}
         <p className="text-center text-sm text-[#6B6B6B] mt-8">
-          * Possibilité de paiement en plusieurs fois. Règlement par chèque, espèces ou virement.
+          * Règlement par chèque, espèces ou virement.
         </p>
       </div>
     </section>

@@ -24,8 +24,8 @@ export default function Home() {
         <Cabinet />
         <Testimonials />
         <Pricing />
-        <FAQ />
         <Contact />
+        <FAQ />
       </main>
       <Footer />
     </>

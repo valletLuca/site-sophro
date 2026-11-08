@@ -1,11 +1,17 @@
+import BookingCalendar from '@/components/rdv/BookingCalendar';
+
 export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-[#F6F1EB]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="section-title">Contact</h2>
         <p className="text-center text-[#6B6B6B] max-w-2xl mx-auto mb-12">
-          Pour prendre rendez-vous, appelez-moi directement. Pour toute question, n&apos;hésitez pas à m&apos;envoyer un SMS.
+          Choisissez un créneau et envoyez-moi votre demande. Je vous confirme le rendez-vous par mail.
         </p>
+
+        <div className="mb-12">
+          <BookingCalendar />
+        </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}
@@ -14,7 +20,7 @@ export default function Contact() {
               <h3 className="text-xl font-serif text-[#4A4A4A] mb-6">Coordonnées</h3>
               
               <div className="space-y-4">
-                <a href="tel:+33612345678" className="flex items-center gap-4 text-[#6B6B6B] hover:text-[#BFD8C0] transition-colors">
+                <a href="tel:+33781442733" className="flex items-center gap-4 text-[#6B6B6B] hover:text-[#BFD8C0] transition-colors">
                   <div className="w-12 h-12 bg-[#BFD8C0]/20 rounded-full flex items-center justify-center">
                     <svg className="w-5 h-5 text-[#BFD8C0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -56,7 +62,9 @@ export default function Contact() {
                 </div>
               </div>
             </div>
+          </div>
 
+          <div className="space-y-6">
             {/* Google Maps */}
             <a 
               href="https://www.google.fr/maps/place/Christine+Vallet+Sophrologue/@48.8843994,6.392343,17z/data=!3m1!4b1!4m6!3m5!1s0x4794f3eb6b4f564d:0xfd6d5e58c07f174c!8m2!3d48.8843959!4d6.3949233!16s%2Fg%2F11y3y8rp3r"
@@ -80,36 +88,12 @@ export default function Contact() {
                 </span>
               </div>
             </a>
-          </div>
 
-          {/* Prise de RDV */}
-          <div className="card">
-            <h3 className="text-xl font-serif text-[#4A4A4A] mb-6">Prendre rendez-vous</h3>
-            
-            <div className="text-center space-y-6">
-              <div className="bg-[#BFD8C0]/10 rounded-2xl p-6">
-                <div className="w-16 h-16 bg-[#BFD8C0]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-[#BFD8C0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                  </svg>
-                </div>
-                <p className="text-[#4A4A4A] font-medium mb-2">Appelez-moi pour réserver votre séance</p>
-                <a href="tel:+33781442733" className="inline-block text-2xl font-serif text-[#4A4A4A] hover:text-[#BFD8C0] transition-colors">
-                  07 81 44 27 33
-                </a>
-              </div>
-
-              <div className="bg-[#E8C7C8]/10 rounded-2xl p-6">
-                <div className="w-16 h-16 bg-[#E8C7C8]/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-8 h-8 text-[#E8C7C8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
-                  </svg>
-                </div>
-                <p className="text-[#4A4A4A] font-medium mb-2">Une question ? Envoyez-moi un SMS</p>
-                <a href="sms:+33781442733" className="inline-block text-lg text-[#6B6B6B] hover:text-[#E8C7C8] transition-colors">
-                  07 81 44 27 33
-                </a>
-              </div>
+            <div className="bg-[#BFD8C0]/10 rounded-2xl p-5 text-center text-[#6B6B6B]">
+              <p>
+                Vous préférez échanger de vive voix ? Appelez-moi au{' '}
+                <a href="tel:+33781442733" className="font-medium text-[#4A4A4A] hover:underline">07 81 44 27 33</a>.
+              </p>
             </div>
           </div>
         </div>

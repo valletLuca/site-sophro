@@ -25,7 +25,7 @@ export default function About() {
             <h4 className="text-xl font-serif mb-4 text-[#4A4A4A]">Les bienfaits</h4>
             <ul className="space-y-3">
               {[
-                'Réduction du stress et de l\'anxiété',
+                'Réduction du stress, de l\'anxiété et des tensions',
                 'Amélioration de la qualité du sommeil',
                 'Renforcement de la confiance en soi',
                 'Meilleure gestion des émotions',

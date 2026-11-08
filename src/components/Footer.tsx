@@ -63,7 +63,9 @@ export default function Footer() {
               <li>christinevallet.sophro@gmail.com</li>
               <li>42 rue du Général Nassoy</li>
               <li>57590 Delme</li>
-              <li className="pt-2">Lun - Sam : 9h - 19h</li>
+              <li className="pt-2">Lun - Jeu : 9h - 20h</li>
+              <li>Vendredi : 9h - 18h</li>
+              <li>Samedi : 10h - 16h</li>
             </ul>
           </div>
         </div>
@@ -73,9 +75,16 @@ export default function Footer() {
           <p className="text-sm text-gray-400">
             © {currentYear} Christine Vallet - Sophrologue. Tous droits réservés.
           </p>
-          <div className="flex gap-6 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
             <a href="#" className="text-gray-400 hover:text-white transition-colors">Mentions légales</a>
-            <a href="#" className="text-gray-400 hover:text-white transition-colors">Politique de confidentialité</a>
+            <a href="/confidentialite" className="text-gray-400 hover:text-white transition-colors">Politique de confidentialité</a>
+            <a
+              href="/admin"
+              rel="nofollow"
+              className="rounded-full border border-white/20 px-4 py-1.5 text-gray-400 hover:border-white/40 hover:text-white transition-colors"
+            >
+              Accès professionnel
+            </a>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { getDb } from './db';
 import { runSweep } from './sweep';
 
-const EVERY_MS = 15 * 60_000;
+const EVERY_MS = 60 * 60_000; // Une fois par heure, pour laisser la base Neon se mettre en veille entre deux passages.
 
 async function tick() {
   try {
@@ -11,7 +11,7 @@ async function tick() {
   }
 }
 
-/** Render Starter ne met pas le serveur en veille : une minuterie interne suffit. */
+/** Suppose un serveur toujours éveillé (Render Starter, ou Free avec un ping externe). */
 export function startScheduler(): void {
   setTimeout(tick, 10_000);
   setInterval(tick, EVERY_MS);

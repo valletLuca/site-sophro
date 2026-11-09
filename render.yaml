@@ -2,7 +2,7 @@ services:
   - type: web
     name: site-sophro
     runtime: node
-    plan: starter
+    plan: free
     region: frankfurt
     buildCommand: npm ci && npm run build
     startCommand: npm start

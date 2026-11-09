@@ -27,7 +27,7 @@ export interface MailBooking {
 type Line = string | { href: string; label: string };
 
 const siteUrl = () => (process.env.SITE_URL ?? 'https://vallet-christine-sophrologue.fr').replace(/\/$/, '');
-const calendarUrl = () => `${siteUrl()}/#contact`;
+const calendarUrl = () => `${siteUrl()}/#booking`;
 const cancelUrl = (id: string) => `${siteUrl()}/rdv/annuler/${signToken('cancel', id)}`;
 const decideUrl = (id: string) => `${siteUrl()}/rdv/decision/${signToken('decide', id)}`;
 const notifyAddress = () => process.env.NOTIFY_EMAIL ?? CONTACT.email;

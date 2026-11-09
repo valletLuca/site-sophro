@@ -79,6 +79,7 @@ export default function BookingCalendar() {
     setSelectedDate(date);
     setSlot(null);
     setNotice('');
+    setFinished(null);
     setTimeout(() => dayPanel.current?.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 0);
   }
 
@@ -95,11 +96,13 @@ export default function BookingCalendar() {
     setNotice('');
   }
 
-  function restart() {
-    setFinished(null);
+  /** Remonte au calendrier actualisé, avec la confirmation au-dessus. */
+  function finish(kind: Exclude<Finished, null>) {
+    setFinished(kind);
     setSlot(null);
     setSelectedDate(null);
     reload();
+    setTimeout(() => document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 0);
   }
 
   function slotGone() {
@@ -122,24 +125,21 @@ export default function BookingCalendar() {
     );
   }
 
-  if (finished) {
-    return (
-      <div role="status" className="bg-white rounded-2xl shadow-md p-6 md:p-10 text-center">
-        <h3 className="text-xl font-serif text-[#4A4A4A] mb-3">
-          {finished === 'sent' ? 'Votre demande est envoyée' : 'Vous êtes sur la liste d\'attente'}
-        </h3>
-        <p className="text-[#6B6B6B] max-w-xl mx-auto mb-6">
-          {finished === 'sent'
-            ? 'Votre rendez-vous n\'est pas encore confirmé. Vous recevrez un mail de réponse sous 72 heures au plus tard.'
-            : 'Vous recevrez un mail si ce créneau se libère.'}
-        </p>
-        <button type="button" onClick={restart} className="btn-primary">Retour au calendrier</button>
-      </div>
-    );
-  }
-
   return (
     <div className="bg-white rounded-2xl shadow-md p-4 sm:p-6 md:p-8">
+      {finished && (
+        <div role="status" className="mb-6 rounded-xl bg-[#BFD8C0]/30 p-4 sm:p-6 text-center">
+          <h3 className="text-xl font-serif text-[#4A4A4A] mb-2">
+            {finished === 'sent' ? 'Votre demande de rendez-vous est envoyée !' : 'Vous êtes sur la liste d\'attente'}
+          </h3>
+          <p className="text-[#6B6B6B]">
+            {finished === 'sent'
+              ? 'Vous recevrez un mail de réponse sous 72 heures au plus tard.'
+              : 'Vous recevrez un mail si ce créneau se libère.'}
+          </p>
+        </div>
+      )}
+
       <div className="flex items-center justify-between mb-4">
         <button
           type="button"
@@ -224,7 +224,7 @@ export default function BookingCalendar() {
               onChange={setDraft}
               onSent={() => {
                 setDraft(emptyDraft(''));
-                setFinished('sent');
+                finish('sent');
               }}
               onTaken={slotGone}
               onCancel={() => setSlot(null)}
@@ -234,7 +234,7 @@ export default function BookingCalendar() {
               key={slot.start}
               slotStart={slot.start}
               slotLabel={slotLabel}
-              onDone={() => setFinished('waitlisted')}
+              onDone={() => finish('waitlisted')}
               onCancel={() => setSlot(null)}
               onUnavailable={() => {
                 setSlot(null);

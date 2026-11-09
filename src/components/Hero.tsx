@@ -15,7 +15,7 @@ export default function Hero() {
               Accompagnement personnalisé pour vous aider à gérer le stress, améliorer votre sommeil et développer votre confiance en vous. Ensemble, cultivons votre bien-être au quotidien.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <a href="#contact" className="btn-primary text-base sm:text-lg">
+              <a href="#booking" className="btn-primary text-base sm:text-lg">
                 Prendre rendez-vous
               </a>
               <a href="#sophrologie" className="btn-secondary text-base sm:text-lg">

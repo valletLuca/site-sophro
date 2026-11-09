@@ -41,7 +41,7 @@ export default function Header() {
                 {link.label}
               </a>
             ))}
-            <a href="#contact" className="btn-primary">
+            <a href="#booking" className="btn-primary">
               Prendre rendez-vous
             </a>
           </nav>
@@ -76,7 +76,7 @@ export default function Header() {
                   {link.label}
                 </a>
               ))}
-              <a href="#contact" className="btn-primary text-center mx-2">
+              <a href="#booking" className="btn-primary text-center mx-2">
                 Prendre rendez-vous
               </a>
             </div>

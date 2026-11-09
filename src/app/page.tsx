@@ -8,6 +8,7 @@ import Cabinet from '@/components/Cabinet';
 import Testimonials from '@/components/Testimonials';
 import Pricing from '@/components/Pricing';
 import FAQ from '@/components/FAQ';
+import Booking from '@/components/Booking';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -24,6 +25,7 @@ export default function Home() {
         <Cabinet />
         <Testimonials />
         <Pricing />
+        <Booking />
         <Contact />
         <FAQ />
       </main>

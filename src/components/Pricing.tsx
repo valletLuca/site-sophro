@@ -134,7 +134,7 @@ export default function Pricing() {
                 <span className="inline-block bg-[#BFD8C0]/30 text-[#4A4A4A] px-4 py-2 rounded-full text-sm font-medium">
                   {pack.bonus}
                 </span>
-                <a href="#contact" className="block mt-6 btn-primary">
+                <a href="#booking" className="block mt-6 btn-primary">
                   Choisir ce pack
                 </a>
               </div>

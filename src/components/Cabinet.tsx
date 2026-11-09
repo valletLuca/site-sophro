@@ -4,9 +4,9 @@ import cabinet2 from '../img/cabinet2.jpg';
 import cabinet3 from '../img/cabinet3.jpg';
 
 const photos = [
-  { src: cabinet2, alt: 'Extérieur du cabinet' },
   { src: cabinet3, alt: 'Espace de consultation' },
   { src: cabinet1, alt: 'Bureau du cabinet' },
+  { src: cabinet2, alt: 'Extérieur du cabinet' },
 ];
 
 export default function Cabinet() {

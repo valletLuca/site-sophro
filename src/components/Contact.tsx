@@ -1,17 +1,11 @@
-import BookingCalendar from '@/components/rdv/BookingCalendar';
-
 export default function Contact() {
   return (
     <section id="contact" className="py-20 bg-[#F6F1EB]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="section-title">Contact</h2>
         <p className="text-center text-[#6B6B6B] max-w-2xl mx-auto mb-12">
-          Choisissez un créneau et envoyez-moi votre demande. Je vous confirme le rendez-vous par mail.
+          Une question avant de réserver ? Appelez-moi ou écrivez-moi.
         </p>
-
-        <div className="mb-12">
-          <BookingCalendar />
-        </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Info */}

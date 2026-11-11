@@ -8,6 +8,7 @@ import {
 import { getDb } from '@/lib/rdv/db';
 import { formatSlotFr } from '@/lib/rdv/time';
 import { addBlock, addPhone, cancel, decide, removeBlock, signOut } from './actions';
+import { SubmitButton } from './SubmitButton';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'Rendez-vous', robots: { index: false } };
@@ -66,7 +67,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
       <div className="max-w-3xl mx-auto space-y-6">
         <header className="flex items-center justify-between">
           <h1 className="text-2xl font-serif">Rendez-vous</h1>
-          <form action={signOut}><button type="submit" className="text-sm text-[#6B6B6B] underline">Se déconnecter</button></form>
+          <form action={signOut}><SubmitButton className="text-sm text-[#6B6B6B] underline">Se déconnecter</SubmitButton></form>
         </header>
 
         {message && MESSAGES[message] && <p role="status" className="rounded-xl bg-[#BFD8C0]/40 p-3">{MESSAGES[message]}</p>}
@@ -81,11 +82,11 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                 <p className="text-sm text-[#6B6B6B]">{remaining(b.expires_at!, now)}</p>
                 <form action={decide} className="space-y-2 pt-2">
                   <input type="hidden" name="id" value={b.id} />
-                  <button type="submit" name="decision" value="accept" className="btn-primary">Accepter</button>
+                  <SubmitButton name="decision" value="accept" className="btn-primary">Accepter</SubmitButton>
                   <details>
                     <summary className="cursor-pointer text-sm text-[#6B6B6B]">Refuser…</summary>
                     <textarea name="message" rows={2} maxLength={1000} placeholder="Message pour le client (facultatif)" className={`${inputClass} w-full mt-2`} />
-                    <button type="submit" name="decision" value="refuse" className="btn-secondary mt-2">Confirmer le refus</button>
+                    <SubmitButton name="decision" value="refuse" className="btn-secondary mt-2">Confirmer le refus</SubmitButton>
                   </details>
                 </form>
               </li>
@@ -104,7 +105,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                   <summary className="cursor-pointer text-sm text-[#6B6B6B]">Annuler…</summary>
                   <form action={cancel} className="mt-2">
                     <input type="hidden" name="id" value={b.id} />
-                    <button type="submit" className="btn-secondary">Confirmer l&apos;annulation</button>
+                    <SubmitButton className="btn-secondary">Confirmer l&apos;annulation</SubmitButton>
                   </form>
                 </details>
               </li>
@@ -124,7 +125,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             </label>
             <label className="text-sm">Nom<input name="name" required maxLength={160} className={`${inputClass} w-full`} /></label>
             <label className="text-sm">Téléphone (facultatif)<input name="phone" maxLength={30} className={`${inputClass} w-full`} /></label>
-            <button type="submit" className="btn-primary sm:col-span-2">Ajouter</button>
+            <SubmitButton className="btn-primary sm:col-span-2">Ajouter</SubmitButton>
           </form>
         </section>
 
@@ -141,7 +142,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
               </select>
             </label>
             <label className="text-sm">Note (non visible du public)<input name="label" maxLength={120} className={`${inputClass} w-full`} /></label>
-            <button type="submit" className="btn-primary sm:col-span-2">Bloquer</button>
+            <SubmitButton className="btn-primary sm:col-span-2">Bloquer</SubmitButton>
           </form>
           {blocks.length > 0 && (
             <ul className="mt-5 space-y-2">
@@ -150,7 +151,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                   <span>Du {formatSlotFr(b.start_at)} au {formatSlotFr(b.end_at)}{b.label ? ` · ${b.label}` : ''}</span>
                   <form action={removeBlock}>
                     <input type="hidden" name="id" value={b.id} />
-                    <button type="submit" className="text-[#6B6B6B] underline">Retirer</button>
+                    <SubmitButton className="text-[#6B6B6B] underline">Retirer</SubmitButton>
                   </form>
                 </li>
               ))}

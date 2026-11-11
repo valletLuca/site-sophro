@@ -50,13 +50,11 @@ export default function MonthGrid({ days, selectedDate, onSelect }: Props) {
               } ${selectable ? 'hover:border-[#8FBB91] cursor-pointer' : 'cursor-default opacity-70'}`}
             >
               <span className="text-sm font-medium text-[#4A4A4A] mb-1">{Number(day.date.slice(8))}</span>
-              {/* Mobile : pastilles */}
               <span className="flex sm:hidden flex-wrap justify-center gap-0.5">
                 {day.slots.map((slot) => (
                   <span key={slot.start} className={`w-1.5 h-1.5 rounded-full ${STATE_STYLES[slot.state].dot}`} />
                 ))}
               </span>
-              {/* Écran large : heures */}
               <span className="hidden sm:flex flex-col gap-0.5">
                 {day.slots.map((slot) => (
                   <span key={slot.start} className={`rounded px-1 text-[11px] leading-[15px] text-center ${STATE_STYLES[slot.state].chip}`}>

@@ -71,7 +71,16 @@ async function connect(): Promise<Db> {
   } finally {
     await direct.end();
   }
-  return createPgDb(new Pool({ connectionString: url, max: 5 }));
+  const pool = new Pool({
+    connectionString: url,
+    max: 5,
+    connectionTimeoutMillis: 15_000,
+    idleTimeoutMillis: 10_000,
+    query_timeout: 20_000,
+  });
+  // Sans cet écouteur, une connexion coupée par la mise en veille de Neon arrête le processus.
+  pool.on('error', (error) => console.error('Connexion à la base perdue :', error.message));
+  return createPgDb(pool);
 }
 
 const store = globalThis as unknown as { rdvDb?: Promise<Db> };

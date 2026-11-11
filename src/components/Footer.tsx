@@ -5,7 +5,6 @@ export default function Footer() {
     <footer className="bg-[#4A4A4A] text-white py-10 md:py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-          {/* Logo & Description */}
           <div className="col-span-2">
             <div className="flex items-center space-x-2 mb-4">
               <div className="w-10 h-10 bg-[#BFD8C0] rounded-full flex items-center justify-center">
@@ -18,7 +17,6 @@ export default function Footer() {
             <p className="text-gray-300 text-sm leading-relaxed mb-4">
               Sophrologue certifiée, je vous accompagne vers un mieux-être durable grâce à des techniques de relaxation, de respiration et de visualisation positive.
             </p>
-            {/* Social Links */}
             <div className="flex space-x-3">
               <a href="https://www.facebook.com/share/1E7gfrxNy7/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#BFD8C0] transition-colors">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -43,7 +41,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="font-serif text-lg mb-4">Navigation</h4>
             <ul className="space-y-2">
@@ -55,7 +52,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact Info */}
           <div>
             <h4 className="font-serif text-lg mb-4">Contact</h4>
             <ul className="space-y-2 text-sm text-gray-300">
@@ -70,7 +66,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-gray-400">
             © {currentYear} Christine Vallet - Sophrologue. Tous droits réservés.

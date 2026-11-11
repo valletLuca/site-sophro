@@ -61,24 +61,20 @@ export default function SessionSteps() {
         </p>
 
         <div className="relative">
-          {/* Timeline line - Desktop center */}
           <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-[#BFD8C0]/30 rounded-full"></div>
           
-          {/* Timeline line - Mobile left */}
           <div className="md:hidden absolute left-6 top-0 w-0.5 h-full bg-[#BFD8C0]/30 rounded-full"></div>
 
           <div className="space-y-6 md:space-y-12">
             {steps.map((step, index) => (
               <div key={index} className={`flex flex-row md:flex-col items-start md:items-center gap-4 md:gap-6 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                 
-                {/* Circle - Mobile left side */}
                 <div className="relative z-10 w-12 h-12 md:w-16 md:h-16 bg-[#BFD8C0] rounded-full flex items-center justify-center shadow-lg flex-shrink-0 md:order-none order-first">
                   <div className="text-white scale-75 md:scale-100">
                     {step.icon}
                   </div>
                 </div>
 
-                {/* Content */}
                 <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right md:pr-12' : 'md:text-left md:pl-12'} md:order-first`}>
                   <div className={`card ${index % 2 === 0 ? 'md:ml-auto' : 'md:mr-auto'} max-w-md`}>
                     <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-3">
@@ -89,7 +85,6 @@ export default function SessionSteps() {
                   </div>
                 </div>
 
-                {/* Empty space for desktop alignment */}
                 <div className="flex-1 hidden md:block"></div>
               </div>
             ))}

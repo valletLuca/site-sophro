@@ -8,7 +8,6 @@ export default function Contact() {
         </p>
 
         <div className="grid lg:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <div>
             <div className="card mb-8">
               <h3 className="text-xl font-serif text-[#4A4A4A] mb-6">Coordonnées</h3>
@@ -59,7 +58,6 @@ export default function Contact() {
           </div>
 
           <div className="space-y-6">
-            {/* Google Maps */}
             <a 
               href="https://www.google.fr/maps/place/Christine+Vallet+Sophrologue/@48.8843994,6.392343,17z/data=!3m1!4b1!4m6!3m5!1s0x4794f3eb6b4f564d:0xfd6d5e58c07f174c!8m2!3d48.8843959!4d6.3949233!16s%2Fg%2F11y3y8rp3r"
               target="_blank"

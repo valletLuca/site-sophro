@@ -28,7 +28,6 @@ export default function Testimonials() {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {testimonials.map((testimonial, index) => (
             <div key={index} className="card">
-              {/* Stars */}
               <div className="flex gap-1 mb-4">
                 {[...Array(testimonial.rating)].map((_, i) => (
                   <svg key={i} className="w-5 h-5 text-[#BFD8C0]" fill="currentColor" viewBox="0 0 20 20">
@@ -37,18 +36,15 @@ export default function Testimonials() {
                 ))}
               </div>
               
-              {/* Quote */}
               <blockquote className="text-[#6B6B6B] italic mb-4 leading-relaxed">
                 &quot;{testimonial.text}&quot;
               </blockquote>
               
-              {/* Author */}
               <p className="font-medium text-[#4A4A4A]">{testimonial.name}</p>
             </div>
           ))}
         </div>
 
-        {/* Google Reviews Link */}
         <div className="text-center">
           <a 
             href="https://www.google.fr/maps/place/Christine+Vallet+Sophrologue/@48.8843959,6.3949233,17z/data=!4m8!3m7!1s0x4794f3eb6b4f564d:0xfd6d5e58c07f174c!8m2!3d48.8843959!4d6.3949233!9m1!1b1!16s%2Fg%2F11y3y8rp3r!5m1!1e2?entry=ttu&g_ep=EgoyMDI2MDMxMS4wIKXMDSoASAFQAw%3D%3D" 

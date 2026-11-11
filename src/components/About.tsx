@@ -43,7 +43,6 @@ export default function About() {
           </div>
         </div>
 
-        {/* Présentation sophrologue */}
         <div className="bg-gradient-to-r from-[#BFD8C0]/20 to-[#E8C7C8]/20 rounded-3xl p-8 md:p-12">
           <div className="grid md:grid-cols-3 gap-8 items-center">
             <div className="md:col-span-1">

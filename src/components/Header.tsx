@@ -18,7 +18,6 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#F6F1EB]/95 backdrop-blur-sm shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <div className="w-10 h-10 bg-[#BFD8C0] rounded-full flex items-center justify-center">
               <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
@@ -30,7 +29,6 @@ export default function Header() {
             </span>
           </Link>
 
-          {/* Navigation Desktop */}
           <nav className="hidden md:flex items-center space-x-8">
             {navLinks.map((link) => (
               <a
@@ -46,7 +44,6 @@ export default function Header() {
             </a>
           </nav>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden p-2"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -62,7 +59,6 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-[#BDA89A]/20">
             <div className="flex flex-col space-y-4">

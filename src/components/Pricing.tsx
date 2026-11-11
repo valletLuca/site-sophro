@@ -75,7 +75,6 @@ export default function Pricing() {
           Des formules adaptées à vos besoins et à votre budget.
         </p>
 
-        {/* Individual Pricing */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {pricingPlans.map((plan, index) => (
             <div 
@@ -118,7 +117,6 @@ export default function Pricing() {
           ))}
         </div>
 
-        {/* Packs */}
         <div className="bg-gradient-to-r from-[#BFD8C0]/30 to-[#E8C7C8]/30 rounded-3xl p-8 md:p-12">
           <h3 className="text-2xl font-serif text-center text-[#4A4A4A] mb-2">Packs avantageux</h3>
           <p className="text-center text-[#6B6B6B] mb-8">Engagez-vous sur plusieurs séances et profitez de tarifs préférentiels</p>
@@ -142,7 +140,6 @@ export default function Pricing() {
           </div>
         </div>
 
-        {/* Note */}
         <p className="text-center text-sm text-[#6B6B6B] mt-8">
           * Règlement par chèque, espèces ou virement.
         </p>

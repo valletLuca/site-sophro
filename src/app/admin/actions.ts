@@ -1,12 +1,11 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { addPhoneBooking, createBlock, deleteBlock } from '@/lib/rdv/admin';
+import { addPhoneBooking, blockRanges, createBlocks, deleteBlock } from '@/lib/rdv/admin';
 import { isAdmin, logout } from '@/lib/rdv/auth';
 import { cancelBooking, decideBooking } from '@/lib/rdv/bookings';
 import { getDb } from '@/lib/rdv/db';
-import { slotEnd } from '@/lib/rdv/slots';
-import { addDays, parisToUtc } from '@/lib/rdv/time';
+import { parisToUtc } from '@/lib/rdv/time';
 
 async function guard() {
   if (!(await isAdmin())) redirect('/admin/connexion');
@@ -35,15 +34,11 @@ export async function cancel(data: FormData) {
 
 export async function addBlock(data: FormData) {
   const db = await guard();
-  const from = text(data, 'from');
-  const to = text(data, 'to') || from;
-  const time = text(data, 'time');
-  if (!isDate(from) || !isDate(to) || to < from || (time && !isTime(time))) done('blocage_invalide');
-
-  const range = time
-    ? { start: parisToUtc(from, time), end: slotEnd(parisToUtc(from, time)) }
-    : { start: parisToUtc(from, '00:00'), end: parisToUtc(addDays(to, 1), '00:00') };
-  const result = await createBlock(db, { ...range, label: text(data, 'label').slice(0, 120) }, new Date());
+  const ranges = blockRanges({
+    from: text(data, 'from'), to: text(data, 'to'), startTime: text(data, 'startTime'), endTime: text(data, 'endTime'),
+  });
+  if (!ranges) done('blocage_invalide');
+  const result = await createBlocks(db, ranges!, text(data, 'label').slice(0, 120), new Date());
   done(result.ok ? 'enregistre' : 'blocage_conflit');
 }
 

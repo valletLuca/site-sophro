@@ -17,7 +17,7 @@ const MESSAGES: Record<string, string> = {
   enregistre: 'C\'est enregistré.',
   deja_traitee: 'Cette demande avait déjà été traitée ou a expiré.',
   mail_echec: 'C\'est enregistré, mais le mail n\'a pas pu partir : prévenez la personne par téléphone.',
-  blocage_invalide: 'Les dates du blocage sont invalides.',
+  blocage_invalide: 'Le blocage est invalide : vérifiez les dates, et que l\'heure de fin est après l\'heure de début.',
   blocage_conflit: 'Ce blocage recouvre une demande ou un rendez-vous : traitez-les d\'abord.',
   saisie_invalide: 'Merci d\'indiquer la date, l\'heure et le nom.',
   creneau_pris: 'Ce créneau est déjà pris ou bloqué.',
@@ -131,17 +131,16 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
 
         <section className={sectionClass}>
           <h2 className="text-xl font-serif mb-1">Bloquer des créneaux</h2>
-          <p className="text-sm text-[#6B6B6B] mb-4">Pour un seul créneau, choisissez son heure. Sinon, les journées entières sont bloquées.</p>
+          <p className="text-sm text-[#6B6B6B] mb-4">
+            Sans heures, les journées entières sont bloquées. Avec des heures, la plage est bloquée chaque jour choisi,
+            et tout créneau qu&apos;elle touche, même en partie, n&apos;est plus réservable.
+          </p>
           <form action={addBlock} className="grid sm:grid-cols-2 gap-3">
             <label className="text-sm">Du<input type="date" name="from" required className={`${inputClass} w-full`} /></label>
             <label className="text-sm">Au (facultatif)<input type="date" name="to" className={`${inputClass} w-full`} /></label>
-            <label className="text-sm">Créneau
-              <select name="time" className={`${inputClass} w-full`}>
-                <option value="">Journée entière</option>
-                {TIMES.map((t) => <option key={t} value={t}>{t.replace(':', 'h')}</option>)}
-              </select>
-            </label>
-            <label className="text-sm">Note (non visible du public)<input name="label" maxLength={120} className={`${inputClass} w-full`} /></label>
+            <label className="text-sm">De (facultatif)<input type="time" name="startTime" step={300} className={`${inputClass} w-full`} /></label>
+            <label className="text-sm">À (facultatif)<input type="time" name="endTime" step={300} className={`${inputClass} w-full`} /></label>
+            <label className="text-sm sm:col-span-2">Note (non visible du public)<input name="label" maxLength={120} className={`${inputClass} w-full`} /></label>
             <SubmitButton className="btn-primary sm:col-span-2">Bloquer</SubmitButton>
           </form>
           {blocks.length > 0 && (

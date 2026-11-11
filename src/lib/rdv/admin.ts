@@ -2,6 +2,7 @@ import { type BookingRow, countWeekBookings, expireDue, isBlocked } from './book
 import type { Db } from './db';
 import { SLOT_MINUTES } from './config';
 import { isGridSlot } from './slots';
+import { addDays, parisToUtc } from './time';
 
 export type AdminBooking = BookingRow & { duplicates: number };
 
@@ -57,13 +58,60 @@ export function findBlockConflicts(db: Db, range: BlockRange, now: Date): Promis
   );
 }
 
+export interface BlockForm {
+  from: string;
+  to: string;
+  startTime: string;
+  endTime: string;
+}
+
+const isDate = (value: string) => /^\d{4}-\d{2}-\d{2}$/.test(value);
+const isTime = (value: string) => /^\d{2}:\d{2}$/.test(value);
+const MAX_BLOCK_DAYS = 366;
+
+/**
+ * Sans heure : les journées entières, en une plage. Avec une heure de début et/ou de fin :
+ * cette plage horaire chaque jour (début absent = minuit, fin absente = minuit suivant).
+ */
+export function blockRanges(form: BlockForm): { start: Date; end: Date }[] | null {
+  const to = form.to || form.from;
+  const { from, startTime, endTime } = form;
+  if (!isDate(from) || !isDate(to) || to < from) return null;
+  if ((startTime && !isTime(startTime)) || (endTime && !isTime(endTime))) return null;
+  if (startTime && endTime && endTime <= startTime) return null;
+
+  if (!startTime && !endTime) return [{ start: parisToUtc(from, '00:00'), end: parisToUtc(addDays(to, 1), '00:00') }];
+
+  const ranges = [];
+  for (let day = from; day <= to; day = addDays(day, 1)) {
+    if (ranges.length >= MAX_BLOCK_DAYS) return null;
+    ranges.push({
+      start: parisToUtc(day, startTime || '00:00'),
+      end: endTime ? parisToUtc(day, endTime) : parisToUtc(addDays(day, 1), '00:00'),
+    });
+  }
+  return ranges;
+}
+
 export type BlockResult = { ok: true } | { ok: false; reason: 'conflict'; conflicts: number };
 
-export async function createBlock(db: Db, range: BlockRange, now: Date): Promise<BlockResult> {
-  const conflicts = await findBlockConflicts(db, range, now);
-  if (conflicts.length > 0) return { ok: false, reason: 'conflict', conflicts: conflicts.length };
-  await db.query('INSERT INTO blocks (start_at, end_at, label) VALUES ($1, $2, $3)', [range.start, range.end, range.label]);
-  return { ok: true };
+/** Tout ou rien : si une seule plage recouvre une demande ou un RDV, aucune n'est enregistrée. */
+export async function createBlocks(
+  db: Db, ranges: { start: Date; end: Date }[], label: string, now: Date,
+): Promise<BlockResult> {
+  return db.tx(async (tx) => {
+    let conflicts = 0;
+    for (const range of ranges) conflicts += (await findBlockConflicts(tx, { ...range, label }, now)).length;
+    if (conflicts > 0) return { ok: false as const, reason: 'conflict' as const, conflicts };
+    for (const range of ranges) {
+      await tx.query('INSERT INTO blocks (start_at, end_at, label) VALUES ($1, $2, $3)', [range.start, range.end, label]);
+    }
+    return { ok: true as const };
+  });
+}
+
+export function createBlock(db: Db, range: BlockRange, now: Date): Promise<BlockResult> {
+  return createBlocks(db, [range], range.label, now);
 }
 
 export type PhoneResult = { ok: true } | { ok: false; reason: 'not_a_slot' | 'taken' };
